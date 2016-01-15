@@ -30,7 +30,7 @@ public class CoolWeatherDB {
 	private CoolWeatherDB(Context context) {
 		CoolWeatherOpenHelper dbHelper = new CoolWeatherOpenHelper(context,
 				DB_NAME, null, VERSION);
-		dbHelper.getWritableDatabase();
+		db = dbHelper.getWritableDatabase();
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class CoolWeatherDB {
 	 */
 	public List<City> loadCities(int provinceId) {
 		List<City> list = new ArrayList<City>();
-		Cursor cursor = db.query("City", null, "provinceId=?",
+		Cursor cursor = db.query("City", null, "province_id=?",
 				new String[] { String.valueOf(provinceId) }, null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
